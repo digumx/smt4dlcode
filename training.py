@@ -190,7 +190,7 @@ if __name__=="__main__":
         # Reset optimizer with lower learning rate
         if n_stag >= stag_limit:
             lrate *= args.lr_red_fac
-            stag_limit /= args.lr_red_fac
+            #stag_limit /= args.lr_red_fac
             optimizer = torch.optim.Adam(model.parameters(), lr = lrate)
             n_stag = 0
             print("Reducing LR to {0}".format(lrate))

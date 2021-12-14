@@ -40,6 +40,9 @@ class TorchLSTM(nn.Module):
         output = self.decoder(x)
         self.internal_state = (new_internal_state[0].detach(), new_internal_state[1].detach())
         return output
+
+    def reset_internal(self):
+        self.internal_state = None
     
     def save_model(self, path):
         torch.save(self.state_dict(), path)
@@ -154,6 +157,12 @@ class CustomLSTM(nn.Module):
         # Return output
         return torch.stack(output)
     
+    def reset_internal(self):
+        """
+        Reset the internal state
+        """
+        self.h = None
+        self.c = None
 
     def save_model(self, path):
         torch.save(self.state_dict(), path)
